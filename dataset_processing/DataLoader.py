@@ -1,7 +1,7 @@
 from torch.utils.data import DataLoader
 from dataset_processing.EchoNetDataset import EchoNetDataset
 
-dataset =  EchoNetDataset(csv_file="/Users/nihar/Documents/GitHub/deep-kalman-filter/EchoNet-Dynamic/FileList.csv", video_dir="/Users/nihar/Documents/GitHub/deep-kalman-filter/EchoNet-Dynamic/Videos",split="TRAIN", frames=32, image_size=112)
+dataset =  EchoNetDataset(csv_file="", video_dir="",split="TRAIN", frames=32, image_size=112)
 
 loader = DataLoader(
     dataset=dataset,
