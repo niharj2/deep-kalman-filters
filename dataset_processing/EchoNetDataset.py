@@ -1,5 +1,5 @@
 import torch
-import load_video
+from .load_video import load_video
 import os
 import pandas as pd
 

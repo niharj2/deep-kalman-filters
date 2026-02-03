@@ -21,6 +21,10 @@ def load_video(video_path, frames=32, size=112):
 
     T, H, W, C = video.shape
 
+    if T == 0:
+        # return a dummy black video so training doesn't crash
+        return torch.zeros(3, frames, size, size, dtype=torch.float32)
+
     # 2. Uniformly sample frames
     if T >= frames:
         indices = torch.linspace(0, T - 1, frames).long()
