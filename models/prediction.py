@@ -142,7 +142,7 @@ def main():
     TUBELET  = 2
 
     # If you trained with EF normalized by /100, set this True
-    EF_WAS_NORMALIZED = True
+    EF_WAS_NORMALIZED = False
 
     # ----------------------------
     # Build encoder + load SSL
@@ -199,14 +199,17 @@ def main():
                   video.dtype,
                   "min/max:", float(video.min()), float(video.max()))
 
-        with torch.no_grad():
-            pred = model(video.unsqueeze(0).to(device)).item()
-
         gt_val = float(gt)
-        pred_val = float(pred)
+
+        with torch.no_grad():
+            raw = model(video.unsqueeze(0).to(device)).item()
+
+        print(f"[idx={idx}] RAW={raw:.6f} | GT EF={gt_val:.2f}")
 
         if EF_WAS_NORMALIZED:
-            pred_val *= 100.0
+            pred_val = raw * 100.0   # model trained on EF/100
+        else:
+            pred_val = raw           # model trained on EF directly
 
         print(f"[idx={idx}] GT EF={gt_val:.2f} | Pred EF={pred_val:.2f}")
 
