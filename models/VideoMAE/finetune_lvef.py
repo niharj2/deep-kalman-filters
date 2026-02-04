@@ -44,7 +44,7 @@ def main():
     ds = EchoNetDataset(
         csv_file="/content/drive/MyDrive/kalman_filters/EchoNet-Dynamic/FileList.csv",
         video_dir="/content/drive/MyDrive/kalman_filters/EchoNet-Dynamic/Videos",
-        split="train",
+        split="TRAIN",
         frames=32,        # MUST match SSL
         image_size=112,   # MUST match SSL
     )

@@ -28,6 +28,7 @@ class EchoNetDataset(torch.utils.data.Dataset):
             size=self.image_size
         )
 
-        lvef = row["EF"]
-
+        lvef = float(row["EF"])
+        lvef = lvef / 100.0
         return video, torch.tensor(lvef, dtype=torch.float32)
+    
